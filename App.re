@@ -49,6 +49,18 @@ module AnimatedText = {
     });
 };
 
+module NameInput = {
+  let component = React.component("NameInput");
+
+  let createElement = (~children as _, ()) =>
+    component(hooks => {
+      let (name, setName, hooks) =
+        React.Hooks.state("", hooks);
+
+      (hooks, <Input value=name onChange=((~value) => setName(value)) />);
+    });
+};
+
 module SimpleButton = {
   let component = React.component("SimpleButton");
 
@@ -106,6 +118,7 @@ let init = app => {
         <AnimatedText delay=1. textContent="Revery" />
       </View>
       <SimpleButton />
+      <NameInput />
     </View>;
 
   UI.start(win, render);
